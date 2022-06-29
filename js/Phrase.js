@@ -8,9 +8,10 @@ class Phrase {
 constructor (phrase) {
     this.phrase = phrase.toLowerCase();
 }
-//created method to add letter placeholders to the display
+//Step 6: created method to add letter placeholders to hide the letters of the phrase on the display when game starts.
 addPhraseToDisplay() {
-
+let displayPhrase = document.querySelector("#phrase", "UL"); 
+console.log(displayPhrase);
 
 };
 }

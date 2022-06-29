@@ -34,4 +34,8 @@
 //Testing `addPhraseToDisplay` method
 const game = new Game();
 game.getRandomPhrase().addPhraseToDisplay();  //returns an object that was created by calling Phrase class's constructor new Phrase
-
+ //or
+// const game = new Game();
+//  const randomPhrase = game.getRandomPhrase();
+//  const phrase = new Phrase(randomPhrase.phrase);
+//  phrase.addPhraseToDisplay();
