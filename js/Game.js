@@ -2,7 +2,7 @@
  * Project 4 - OOP Game App
  * Game.js */
 //This file to create Game class methods for starting and ending the game, handling interactions, getting a random phrase, checking for a win, and removing a life from the scoreboard.
-
+//Step 2, step 3, step 4
 class Game {
 constructor () {
     this.missed = 0;
@@ -16,7 +16,13 @@ constructor () {
     this.activePhrase = null;
 }
 //The getRandomPhrase method below will select and return a random phrase from the array above. 
-getRandomPhrase(phrases) {
+//step 5
+
+/**
+* Selects random phrase from phrases property
+* @return {Object} Phrase object chosen to be used
+*/
+getRandomPhrase() {
     let random = Math.floor(Math.random() * game.phrases.length);
     return this.phrases[random];
 };
