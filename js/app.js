@@ -44,7 +44,7 @@
  //const game = new Game();
 //const game = new Game();
 //Step 8: declaring/defining var startButton with the id of btn_reset from the html
-const startButton = document.getElementById("btn_reset");
+const startButton = document.getElementById("btn__reset");
 //game.startGame();
 //console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
 //created event listener for the start button. When it's clicked the game will start.
