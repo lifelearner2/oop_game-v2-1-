@@ -34,24 +34,22 @@
 //Testing `addPhraseToDisplay` method
 //const game = new Game();
 //game.getRandomPhrase().addPhraseToDisplay();  //returns an object that was created by calling Phrase class's constructor new Phrase
- //or
+//or
 //const game = new Game();
 //  const randomPhrase = game.getRandomPhrase();
 //  const phrase = new Phrase(randomPhrase.phrase);
 //  phrase.addPhraseToDisplay();
 
- //Testing `start game()` method
- //const game = new Game();
+//Testing `start game()` method
+//const game = new Game();
 //const game = new Game();
 //Step 8: declaring/defining var startButton with the id of btn_reset from the html
 const startButton = document.getElementById("btn__reset");
 //game.startGame();
 //console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
 //created event listener for the start button. When it's clicked the game will start.
-startButton.addEventListener( "click", () => {
-    const game = new Game;
-    //if (e.target.tagName === "BUTTON") {
-        game.startGame(); 
-    });
-
-  
+startButton.addEventListener("click", () => {
+  const game = new Game();
+  //if (e.target.tagName === "BUTTON") {
+  game.startGame();
+});
