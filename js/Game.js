@@ -22,18 +22,21 @@ class Game {
 *step 5
 */
     getRandomPhrase() {
-        let random = Math.floor(Math.random() * game.phrases.length);
+        let random = Math.floor(Math.random() * this.phrases.length);
         return this.phrases[random];
 };
 /**
-* Begins game by selecting a random phrase and displaying it to user
+*Hiding start screen overlay 
+*Begins game by selecting a random phrase and displaying it to user
 */
     startGame() {
         const screenOverlay = document.getElementById('overlay');
-
-        // this.getRandomPhrase();
-        // addPhraseToDisplay();
-        // console.log(screenOverlay);
+        screenOverlay.style.display = 'none';
+        screenOverlay.setAttribute('class', 'start');
+        
+        this.activePhrase = this.getRandomPhrase();
+        this.activePhrase.addPhraseToDisplay();
+       
     };
 
 

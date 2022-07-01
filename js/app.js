@@ -14,9 +14,9 @@
 //testing random phrases:
 const game = new Game();
 
-game.phrases.forEach( (phrase, index) => {
-    console.log(`Phrase ${index} - phrase: ${phrase.phrase}`);
-});
+// game.phrases.forEach( (phrase, index) => {
+//     console.log(`Phrase ${index} - phrase: ${phrase.phrase}`);
+// });
 
 //testing the random selection of phrases from game.js
 //this may not show all five phrases to the console as it is showing phrases at random so you may see a phrase more than once.
@@ -25,11 +25,11 @@ const logPhrase = (phrase) => {
 };
 // const game = new Game();
 
-logPhrase(game.getRandomPhrase());
-logPhrase(game.getRandomPhrase());
-logPhrase(game.getRandomPhrase());
-logPhrase(game.getRandomPhrase());
-logPhrase(game.getRandomPhrase());
+// logPhrase(game.getRandomPhrase());
+// logPhrase(game.getRandomPhrase());
+// logPhrase(game.getRandomPhrase());
+// logPhrase(game.getRandomPhrase());
+// logPhrase(game.getRandomPhrase());
 
 //Testing `addPhraseToDisplay` method
 //const game = new Game();
@@ -42,7 +42,7 @@ game.getRandomPhrase().addPhraseToDisplay();  //returns an object that was creat
 
  //Testing `start game()` method
  //const game = new Game();
-// game.startGame();
-// console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
+game.startGame();
+console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
 
 

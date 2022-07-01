@@ -18,18 +18,23 @@ class Phrase {
     addPhraseToDisplay() {
         let phraseDiv = document.getElementById("phrase");
         let ul = document.querySelector("ul");
-        let splitPhrase = this.phrase.split('') 
+        // let splitPhrase = this.activePhrase.split('') 
         let li = '';
+        // console.log(splitPhrase);
+        console.log(this.phrase)
 
-        splitPhrase.forEach(character => {
-            if(character === ' ') {
-                li = `<li class="space ${character}">${character}</li>`;
+        for(let i=0; i< this.phrase.length; i++) {
+            if(this.phrase[i] === ' ') {
+                li += `<li class="space">${this.phrase[i]}</li>`
             } else {
-                li = `<li class="hide letter ${character}">${character}</li>`;
+                li += `<li class="hide letter ${this.phrase[i]}">${this.phrase[i]}</li>`
             }
-//append the 'li' element to the `#phrase ul`
-            ul.insertAdjacentHTML("beforeend", li);
-        });                                                                   
+           // ul.insertAdjacentHTML("beforeend", li);
+        }
+       ul.innerHTML = li;
+        console.log(li)
+
+    }                                                                 
 
 /**
 * Displays passed letter on screen after a match is found
@@ -48,4 +53,4 @@ class Phrase {
 
 // console.log(letterSpace);
 
-};
+
