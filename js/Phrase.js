@@ -15,12 +15,12 @@ class Phrase {
    *else create an li element with the classes 'hide letter' and the letter that is being looped over.
    *\set the textContent of the 'li' to be the character that is being looped over
    */
+  //displays phrase on gameboard 
   addPhraseToDisplay() {
     let phraseDiv = document.getElementById("phrase");
     let ul = document.querySelector("ul");
     // let splitPhrase = this.activePhrase.split('')
     let li = "";
-    // console.log(splitPhrase);
     console.log(this.phrase);
 
     for (let i = 0; i < this.phrase.length; i++) {
@@ -29,23 +29,33 @@ class Phrase {
       } else {
         li += `<li class="hide letter ${this.phrase[i]}">${this.phrase[i]}</li>`;
       }
-      // ul.insertAdjacentHTML("beforeend", li);
     }
     ul.innerHTML = li;
-    console.log(li);
+    console.log(ul);
   }
-
+  //checkLetter method checks to see if the letter selected by the player matches a letter in the phrase.  Not sure this is working
+    checkLetter() {
+        if (this.phrase === (letter)) {
+            return true;
+        } else {
+            return false;
+        };
+    }
+   
   /**
    * Displays passed letter on screen after a match is found
    * @param (string) letter - Letter to display
    */
-
-  //showMatchedLetter(letter) {
+    //showMatchedLetter method reveals the letter(s) on the board that matches the player's selection. not sure this is working.
+    //To reveal matching letter(s), select all of the letter DOM elements that have a CSS class name that matches the selected letter(li) and replace each selected hide CSS class with 'show'Class
+    showMatchedLetter(letter) {
+        // let guess;
+        let revealLetter = document.querySelectorAll(`li.${selectedLetter}`);
+        for (let i = 0; i=10; i++ ) {
+            revealLetter += li.hide.letter
+        }
+        li.innerHTML = revealLetter;
+        console.log("revealLetter: ", revealLetter);
+    }
 }
 
-//creating variable to store letters
-//const letterSpace = "";
-
-//li.textContent = this.phrases[i];
-
-// console.log(letterSpace);

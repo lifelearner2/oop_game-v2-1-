@@ -37,4 +37,29 @@ class Game {
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
   }
+  
+  //Logic and branching included in handleInteraction method
+  //Step 9: matching letter, letter displayed instead of placeholder or remove life if no match
+  //check if player won by revealing all letters in phrase or lost if player out of lives
+  //winner or loser message must be displayed on screen.
+  handleInteraction() {
+      //if phrase does not include guessed letter, the wrong CSS class
+      //is added to the selected letter's keyboard button adn the removeLife is called.
+      //if phrase includes guessed letter, the chosen CSS class is added to the 
+      //selected letter's keyboard button, the showMatchedletter method is
+      //called on the phrase, and the checkForWin method is called.
+      //If player has won game, the gameOver() method is called.
+    
+  
+    }
+  checkForWin() {
+      //checks if player has revealed all of the letters in the active phrase 
+  }
+  removeLife() {
+      //removes a life from the scoreboard(one of liveHeart.png images is replaced with lostHeart.png image), increments
+      //the missed property and if the player has lost the game calls the gameOver method.
+  }
+  gameOver() {
+      //displays a final win or loss message by showing original start screen overlay styled with either win or lose CSS class
+  }
 }

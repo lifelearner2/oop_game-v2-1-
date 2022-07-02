@@ -42,14 +42,29 @@
 
 //Testing `start game()` method
 //const game = new Game();
-//const game = new Game();
-//Step 8: declaring/defining var startButton with the id of btn_reset from the html
+
+//Step 8: declaring/defining var startButton with the id of btn__reset from the html(two underscores!)
 const startButton = document.getElementById("btn__reset");
-//game.startGame();
 //console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
+
 //created event listener for the start button. When it's clicked the game will start.
 startButton.addEventListener("click", () => {
   const game = new Game();
-  //if (e.target.tagName === "BUTTON") {
   game.startGame();
 });
+
+//clicking an onscreen keyboard button results in a call to "handleInteraction" method for the clicked keyboard button
+const keyButton = document.getElementById("qwerty");
+const game = new Game();
+keyButton.addEventListener("click", (e) => {
+  console.log(e.target);
+  e.target.tagName === "BUTTON";
+  game.handleInteraction();
+
+  
+});
+console.log(keyButton);
+
+//clicking spaces between and around the onscreen keyboard buttons does not result in the handleInteraction method being called.
+
+//after a game is completed, the gameboard is reset so that clicking the start game button loads a new game.
