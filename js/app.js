@@ -54,14 +54,13 @@ startButton.addEventListener("click", () => {
 });
 
 //clicking an onscreen keyboard button results in a call to "handleInteraction" method for the clicked keyboard button
+//this code activates the buttons (as well as the space around the buttons) when clicked. The console log will log the letter or the empty space that was clicked
 const keyButton = document.getElementById("qwerty");
 const game = new Game();
 keyButton.addEventListener("click", (e) => {
   console.log(e.target);
   e.target.tagName === "BUTTON";
   game.handleInteraction();
-
-  
 });
 console.log(keyButton);
 
