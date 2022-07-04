@@ -37,14 +37,14 @@ class Phrase {
    * @param (string) letter - Letter to check
    */
   //checkLetter method checks to see if the letter selected by the player matches a letter in the phrase.  Not sure this is working
-   checkLetter(letter) {
-    if (this.phrase.includes(letter)){
-        return true;
+  checkLetter(letter) {
+    if (this.phrase.includes(letter)) {
+      return true;
     } else {
-        return false;
-    };
-   };
-  
+      return false;
+    }
+  }
+
   //To test the "checkLetter()` method,
   //enter the following line of code directly into the console:
   //game.activePhrase.checkLetter('a')
@@ -60,12 +60,11 @@ class Phrase {
     for (let i = 0; i < revealLetter.length; i++) {
       if (revealLetter[i].textContent.includes(letter)) {
         revealLetter[i].textContent.includes(letter);
-        revealLetter[i].className= `show letter${letter}`;
+        revealLetter[i].className = `show letter${letter}`;
       }
     }
   }
   //To test the Phrase class's `showMatchedLetter()` method, enter the following line of code
   // directly into the console, passing in a letter that you know is your active phrase:
   // game.activePhrase.showMatchedLetter('a')
-
-};
+}
