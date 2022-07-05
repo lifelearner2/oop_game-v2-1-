@@ -45,7 +45,7 @@ won
   checkForWin() {
     let phraseLetters = document.getElementsByClassName("hide");
     let guessedLetter = document.getElementsByClassName("show");
-    if (guessedLetter === phraseLetters) {
+    if (this.guessedLetter === this.phraseLetters) {
       return true;
     } else {
       return false;
@@ -63,13 +63,14 @@ won
    */
   removeLife() {
     const livesLeft = document.querySelectorAll("img");
+    this.missed ++;
     //removes a life from the scoreboard(one of liveHeart.png images is replaced with lostHeart.png image), increments
     //the missed property and if the player has lost the game calls the gameOver method.
     for (let i = 0; i < this.missed.length; i++) {
-      if (this.missed < 4) {
+      if (this.missed > 4) {
         livesLeft[this.missed].src = "images/lostHeart.png";
-      } else {
-        game.gameOver();
+        this.gameOver(true)
+      } 
       }
     }
   }
@@ -80,11 +81,11 @@ won
    * Displays game over message
    * @param {boolean} gameWon - Whether or not the user won the game
    */
-  gameOver(gameWon) {
+  gameOver(gameWon); {
     const screenOverlay = document.getElementById("overlay");
     screenOverlay.style.display = "none";
     screenOverlay.setAttribute("class", "start");
-
+    //const gameWon  
     //displays a final win or loss message by showing original start screen overlay styled with either win or lose CSS class
     if (gameWon) {
       screenOverlay.className = "win";
@@ -95,7 +96,7 @@ won
         "Sorry, you did mot guess correctly this time, try again!";
     }
   }
-  
+
   /** step 10:
    * Handles onscreen keyboard button clicks
    * @param (HTMLButtonElement) button - The clicked button element
@@ -120,8 +121,8 @@ won
   //   }
     
   //   console.log(button);
-  // }
-}
+  //}
+
 // Then I called the `removeLife()` method four more times to test that the game would end and
 // display the "lost" message:
 //removeLife(lost);
