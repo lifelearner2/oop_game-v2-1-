@@ -52,12 +52,12 @@ startButton.addEventListener("click", () => {
   const game = new Game();
   game.startGame();
 });
-//Testing game by typing the following directly into console:: 
-//1. game.startGame() - works
+//Testing game by typing the following directly into console::
+//1. game.startGame() - works - may also need to type in game.activePhrase
 //2. game.activePhrase.checkLetter('a') - works
-//3. game.activePhrase.showMatchedLetter('a') - works but not showing every matched spot for a single letter - only one or two
-//4. game.checkForWin() - seems to work for false, but also said true when wasn't true.
-//5. game.removeLife() - not working
+//3. game.activePhrase.showMatchedLetter('a') - works but not showing every matched spot for a single letter - only one or two. not working since I made changes.
+//4. game.checkForWin() - not accurately reporting true or false
+//5. game.removeLife() - it's removing a life now when I type it in.(but only removing 4/5)
 //6. game.gameOver() - error: gameOverMessage not defined (game.js.), but only takes it four times. On the 5th the console doesn't respond.
 
 //clicking an onscreen keyboard button results in a call to "handleInteraction" method for the clicked keyboard button
