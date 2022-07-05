@@ -36,26 +36,7 @@ class Game {
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
   }
-  /**
-   * Handles onscreen keyboard button clicks
-   * @param (HTMLButtonElement) button - The clicked button element
-   */
-  //Logic and branching included in handleInteraction method
-  //Step 9: matching letter, letter displayed instead of placeholder or remove life if no match
-  //check if player won by revealing all letters in phrase or lost if player out of lives
-  //winner or loser message must be displayed on screen.
-  handleInteraction(button) {
-    //if phrase does not include guessed letter, the wrong CSS class
-    //is added to the selected letter's keyboard button adn the removeLife is called.
-    //if phrase includes guessed letter, the chosen CSS class is added to the
-    //selected letter's keyboard button, the showMatchedletter method is
-    //called on the phrase, and the checkForWin method is called.
-    //If player has won game, the gameOver() method is called.
-    // if (phrase === !letter) {
-    //     this.removeLife()
-    // }
-    //console.log(button);
-  }
+
   /**
 * Checks for winning move
 * @return {boolean} True if game has been won, false if game wasn't
@@ -63,23 +44,23 @@ won
 */
   checkForWin() {
     let phraseLetters = document.getElementsByClassName("hide");
-    let userLetters = document.getElementsByClassName("show");
-    if (userLetters === phraseLetters) {
+    let guessedLetter = document.getElementsByClassName("show");
+    if (guessedLetter === phraseLetters) {
       return true;
     } else {
       return false;
     }
     //checks if player has revealed all of the letters in the active phrase
   }
-  /**
-   * Increases the value of the missed property
-   * Removes a life from the scoreboard
-   * Checks if player has remaining lives and ends game if player is out
-   */
   // To test the `checkForWin()` method, enter the
   // following line of code directly into the console:
   // game.checkForWin()
 
+  /**
+   * removeLife Increases the value of the missed property
+   * Removes a life from the scoreboard
+   * Checks if player has remaining lives and ends game if player is out
+   */
   removeLife() {
     const livesLeft = document.querySelectorAll("img");
     //removes a life from the scoreboard(one of liveHeart.png images is replaced with lostHeart.png image), increments
@@ -88,7 +69,7 @@ won
       if (this.missed < 4) {
         livesLeft[this.missed].src = "images/lostHeart.png";
       } else {
-        this.gameOver();
+        game.gameOver();
       }
     }
   }
@@ -104,14 +85,46 @@ won
     screenOverlay.style.display = "none";
     screenOverlay.setAttribute("class", "start");
 
+    //displays a final win or loss message by showing original start screen overlay styled with either win or lose CSS class
     if (gameWon) {
       screenOverlay.className = "win";
-      //gameOverMessage.innerHTML = 'You did mot guess correctly this time, try again!`
+      gameOverMessage.innerHTML = "Congratulations! You guessed the phrase!";
+    } else {
+      screenOverlay.className = "lose";
+      gameOverMessage.innerHTML =
+        "Sorry, you did mot guess correctly this time, try again!";
     }
-    //displays a final win or loss message by showing original start screen overlay styled with either win or lose CSS class
   }
+  
+  /** step 10:
+   * Handles onscreen keyboard button clicks
+   * @param (HTMLButtonElement) button - The clicked button element
+   */
+  //Logic and branching included in handleInteraction method
+  //Step 9: matching letter, letter displayed instead of placeholder or remove life if no match
+  //check if player won by revealing all letters in phrase or lost if player out of lives
+  //winner or loser message must be displayed on screen.
+  // handleInteraction(button) {
+  //   //if phrase does not include guessed letter, the wrong CSS class
+  //   //is added to the selected letter's keyboard button and the removeLife is called.
+  //   //if phrase includes guessed letter, the chosen CSS class is added to the
+  //   //selected letter's keyboard button, the showMatchedletter method is
+  //   //called on the phrase, and the checkForWin method is called.
+  //   //If player has won game, the gameOver() method is called.
+
+  //   if (phrase === !guessedLetter) {
+  //       game.removeLife();
+  //   } else  {
+  //     phrase.includes.guessedLetter 
+  //       game.showMatchedLetter() && game.checkForWin()
+  //   }
+    
+  //   console.log(button);
+  // }
 }
 // Then I called the `removeLife()` method four more times to test that the game would end and
 // display the "lost" message:
+//removeLife(lost);
 // And finally, I called the `gameOver()` method passing `true` to test that the game would end
 // and display the "won" message:
+//gameOver(true);

@@ -52,6 +52,13 @@ startButton.addEventListener("click", () => {
   const game = new Game();
   game.startGame();
 });
+//Testing game: 
+//1. Type into console: game.startGame() - works
+//2. Type into console: game.activePhrase.checkLetter('a') - works
+//3. Type into console: game.activePhrase.showMatchedLetter('a') - works but not showing every matched letter - only one or two
+//4. Type into console: game.checkForWin() - seems to work for false
+//5. Type into console: game.removeLife() - not working
+//6. Type into console: game.gameOver() - error: gameOverMessage not defined (game.js.94:7)
 
 //clicking an onscreen keyboard button results in a call to "handleInteraction" method for the clicked keyboard button
 //this code activates the buttons (as well as the space around the buttons) when clicked. The console log will log the letter or the empty space that was clicked
@@ -60,7 +67,7 @@ const game = new Game();
 keyButton.addEventListener("click", (e) => {
   console.log(e.target);
   e.target.tagName === "BUTTON";
-  game.handleInteraction();
+  //game.handleInteraction();
 });
 console.log(keyButton);
 
