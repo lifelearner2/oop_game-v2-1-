@@ -64,8 +64,8 @@ won. If it hasn't been guessed yet console shows letter as "hide" or if it has b
   removeLife() {
     const livesLeft = document.querySelectorAll("img");
     this.missed++;
-    livesLeft[this.missed - 1].src = "images/lostHeart.png";
-    if (this.missed > 4) {
+    livesLeft[this.missed -1].src = "images/lostHeart.png";
+    if (this.missed < 5) {
     } else {
       this.gameOver(false);
     }

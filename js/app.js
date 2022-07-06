@@ -53,9 +53,9 @@
 //1. game.startGame() - works - may also need to type in game.activePhrase
 //2. game.activePhrase.checkLetter('a') - works
 //3. game.activePhrase.showMatchedLetter('a') - works and shows all matched letters not just one or two.
-//4. game.checkForWin() - I think this is working now.
-//5. game.removeLife() - it's removing a life now when I type it in.(but only removing 4/5). Now it's removing all 5 but also showing gameOver page.
-//6. game.gameOver() - error: gameOverMessage not defined (game.js.), but only takes it four times. On the 5th the console doesn't respond.
+//4. game.checkForWin() - works
+//5. game.removeLife() - works. Goes to orange game over (loss) screen on 5th remove Life click.
+//6. game.gameOver() - works - if you pass true it goes to win screen and if you pass false it goes to lose screen.
 
 //clicking an onscreen keyboard button results in a call to "handleInteraction" method for the clicked keyboard button
 //this code activates the buttons (as well as the space around the buttons) when clicked. The console log will log the letter or the empty space that was clicked
@@ -64,10 +64,27 @@
     console.log(e.target);
     if (e.target.tagName === "BUTTON") {
     game.handleInteraction(e.target);
-  }
+ }
 });
     console.log(keyButton);
 
-//clicking spaces between and around the onscreen keyboard buttons does not result in the handleInteraction method being called.
+//STEP 10: clicking spaces between and around the onscreen keyboard buttons does not result in the handleInteraction method being called.
+/**
+* Handles onscreen keyboard button clicks
+* @param (HTMLButtonElement) button - The clicked button element
+*/
+    // const handleInteraction = game.handleInteraction(e.target);
+    // handleInteraction(button) {
+    //     //handleInteraction.addEventListener("click", (e) => {
+    //         console.log(e.target);
+    //     // if (e.target.tagName === "BUTTON") {
+    //     // game.handleInteraction(e.target);
+    //     console.log(button);
+    //}
+   // )
+   // };
+
+
+
 
 //after a game is completed, the gameboard is reset so that clicking the start game button loads a new game.
