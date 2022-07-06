@@ -60,7 +60,7 @@ won. If it hasn't been guessed yet console shows letter as "hide" or if it has b
   //*now when i call removeLife in console (after just one time) it ends the game instead of removing all 5 lives.
   //removes a life from the scoreboard(one of liveHeart.png images is replaced with lostHeart.png image), increments
   //the missed property and if the player has lost the game calls the gameOver method.
-  //the heart/lives must be a -1 to set index back tot zero otherwise it skips frist hear tlife.
+  //the heart/lives must be a -1 to set index back tot zero otherwise it skips first heart life.
   removeLife() {
     const livesLeft = document.querySelectorAll("img");
     this.missed++;
@@ -71,7 +71,7 @@ won. If it hasn't been guessed yet console shows letter as "hide" or if it has b
     }
   }
   /**
-   * STEP 9: Displays game over message
+   * STEP 9: Displays 'game over' message
    * @param {boolean} gameWon - Whether or not the user won the game
    */
   gameOver(gameWon) {
@@ -98,18 +98,31 @@ won. If it hasn't been guessed yet console shows letter as "hide" or if it has b
   //Step 9: matching letter, letter displayed instead of placeholder or remove life if no match
   //check if player won by revealing all letters in phrase or lost if player out of lives
   //winner or loser message must be displayed on screen.
-  //if phrase does not include guessed letter, the wrong CSS class is added to the selected letter's keyboard button and the removeLife is called.
-  //if phrase includes guessed letter, the chosen CSS class is added to the selected letter's keyboard button, the showMatchedletter method is
-  //called on the phrase, and the checkForWin method is called.
+
+ 
   //If player has won game, the gameOver() method is called.
   //STEP 11: Logic and branching included in handleInteraction method
+  //It checks to see if the onscreen keyboard button clicked by the player matches a letter in the phrase, and
+//then directs the game based on a correct or incorrect guess. This method should:
+//● Disable the selected letter’s onscreen keyboard button.
+//● If the phrase does not include the guessed letter, add the `wrong` CSS class to the
+//selected letter's keyboard button and call the `removeLife()` method.
+//● If the phrase includes the guessed letter, add the `chosen` CSS class to the selected
+//letter's keyboard button, call the `showMatchedLetter()` method on the phrase, and
+//then call the `checkForWin()` method. If the player has won the game, also call the
+//`gameOver()` method.
+
+//If phrase does not include guessed letter, the removeLife is called. Otherwise, the screen shows the matched letter and the game checks for a win.
   handleInteraction(button) {
     const guessedLetter = button.textContent;
+    button.disabled = true; //disabling guessed letter's key button
+    //document.getElementById(btn__reset).disabled = true;
     if (!this.activePhrase.checkLetter(guessedLetter)) {
       this.removeLife();
     } else {
       this.showMatchedLetter(guessedLetter);
       this.checkForWin();
+      this.gameOver();
     }
     console.log(button);
   }
