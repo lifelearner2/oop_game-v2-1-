@@ -93,20 +93,16 @@ won. If it hasn't been guessed yet console shows letter as "hide" or if it has b
     }
   }
 
-  /** STEP 10:
-   * Handles onscreen keyboard button clicks
-   * @param (HTMLButtonElement) button - The clicked button element
-   */
-  //Logic and branching included in handleInteraction method
+  
+  
   //Step 9: matching letter, letter displayed instead of placeholder or remove life if no match
   //check if player won by revealing all letters in phrase or lost if player out of lives
   //winner or loser message must be displayed on screen.
-  //if phrase does not include guessed letter, the wrong CSS class
-  //is added to the selected letter's keyboard button and the removeLife is called.
-  //if phrase includes guessed letter, the chosen CSS class is added to the
-  //selected letter's keyboard button, the showMatchedletter method is
+  //if phrase does not include guessed letter, the wrong CSS class is added to the selected letter's keyboard button and the removeLife is called.
+  //if phrase includes guessed letter, the chosen CSS class is added to the selected letter's keyboard button, the showMatchedletter method is
   //called on the phrase, and the checkForWin method is called.
   //If player has won game, the gameOver() method is called.
+  //STEP 11: Logic and branching included in handleInteraction method
   handleInteraction(button) {
     const guessedLetter = button.textContent;
     if (!this.activePhrase.checkLetter(guessedLetter)) {
