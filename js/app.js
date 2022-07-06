@@ -73,15 +73,15 @@
 * Handles onscreen keyboard button clicks
 * @param (HTMLButtonElement) button - The clicked button element
 */ 
-    const handleInteraction = game.handleInteraction(e.target);
-    handleInteraction(button) = document.getElementById("qwerty");
-        handleInteraction.addEventListener("click", (e) => {
-            console.log(e.target);
-        if (e.target.tagName === "BUTTON") {
-        game.handleInteraction(e.target);
-       console.log(button);
-        } 
-    });
+    // const handleInteraction = game.handleInteraction(e.target);
+    // handleInteraction(button) = document.getElementById("qwerty");
+    //     handleInteraction.addEventListener("click", (e) => {
+    //         console.log(e.target);
+    //     if (e.target.tagName === "BUTTON") {
+    //     game.handleInteraction(e.target);
+    //    console.log(button);
+    //     } 
+    // });
 
 
 

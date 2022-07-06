@@ -45,7 +45,6 @@ won. If it hasn't been guessed yet console shows letter as "hide" or if it has b
   checkForWin() {
     let phraseLetters = document.getElementsByClassName("hide");
     if (phraseLetters.length <= 0) {
-      //*can i do === 0 or must it be <= 0
       return true;
     } else {
       return false;
@@ -75,6 +74,7 @@ won. If it hasn't been guessed yet console shows letter as "hide" or if it has b
    * @param {boolean} gameWon - Whether or not the user won the game
    */
   gameOver(gameWon) {
+    const gameWon = this.checkForWin(true);
     const screenOverlay = document.getElementById("overlay");
     const gameOverMessage = document.getElementById("game-over-message");
     screenOverlay.style.display = "none";
@@ -82,6 +82,7 @@ won. If it hasn't been guessed yet console shows letter as "hide" or if it has b
     //const gameWon
     //displays a final win or loss message by showing original start screen overlay styled with either win or lose CSS class
     if (gameWon) {
+      this.gameOver(true);
       screenOverlay.className = "win";
       screenOverlay.style.display = "block"; //block means 'show'
       gameOverMessage.innerHTML = "Congratulations! You guessed the phrase!";
@@ -120,7 +121,7 @@ won. If it hasn't been guessed yet console shows letter as "hide" or if it has b
     if (!this.activePhrase.checkLetter(guessedLetter)) {
       this.removeLife();
     } else {
-      this.showMatchedLetter(guessedLetter);
+      this.activePhrase.showMatchedLetter(guessedLetter);
       this.checkForWin();
       this.gameOver();
     }
