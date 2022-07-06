@@ -80,13 +80,13 @@ won. If it hasn't been guessed yet console shows letter as "hide" or if it has b
     screenOverlay.setAttribute("class", "start");
     //const gameWon
     //displays a final win or loss message by showing original start screen overlay styled with either win or lose CSS class
-    if (this.checkForWin === true) {
-      this.gameOver(true);
+    if (gameWon) {
+      this.checkForWin(gameOver)(true);
       screenOverlay.className = "win";
       screenOverlay.style.display = "block"; //block means 'show'
       gameOverMessage.innerHTML = "Congratulations! You guessed the phrase!";
     } else {
-      this.gameOver(false);
+      this.game.checkForWin(gameOver)(false);
       screenOverlay.className = "lose";
       screenOverlay.style.display = "block";
       gameOverMessage.innerHTML =
@@ -116,14 +116,15 @@ won. If it hasn't been guessed yet console shows letter as "hide" or if it has b
 //If phrase does not include guessed letter, the removeLife is called. Otherwise, the screen shows the matched letter and the game checks for a win.
   handleInteraction(button) {
     const guessedLetter = button.textContent;
-    button.disabled = true; //disabling guessed letter's key button
-    //document.getElementById(btn__reset).disabled = true;
+    button.disabled = true; //disabling guessed letter's key button, so you can only choose a letter once
     if (!this.activePhrase.checkLetter(guessedLetter)) {
-      this.removeLife();
+      button.className = 'chosen'; //adds orange color to correct letter button clicked
+      this.removeLife(); //don't know why I had to reverse the chosen and wrong
     } else {
       this.activePhrase.showMatchedLetter(guessedLetter);
       this.checkForWin();
-      this.gameOver();
+      button.className = 'wrong'; //adds dark gray color to wrong letter button clicked
+      game.gameOver();
     }
     console.log(button);
   }
