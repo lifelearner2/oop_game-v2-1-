@@ -74,19 +74,19 @@ won. If it hasn't been guessed yet console shows letter as "hide" or if it has b
    * @param {boolean} gameWon - Whether or not the user won the game
    */
   gameOver(gameWon) {
-    const gameWon = this.checkForWin(true);
     const screenOverlay = document.getElementById("overlay");
     const gameOverMessage = document.getElementById("game-over-message");
     screenOverlay.style.display = "none";
     screenOverlay.setAttribute("class", "start");
     //const gameWon
     //displays a final win or loss message by showing original start screen overlay styled with either win or lose CSS class
-    if (gameWon) {
+    if (this.checkForWin === true) {
       this.gameOver(true);
       screenOverlay.className = "win";
       screenOverlay.style.display = "block"; //block means 'show'
       gameOverMessage.innerHTML = "Congratulations! You guessed the phrase!";
     } else {
+      this.gameOver(false);
       screenOverlay.className = "lose";
       screenOverlay.style.display = "block";
       gameOverMessage.innerHTML =
