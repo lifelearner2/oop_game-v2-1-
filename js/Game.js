@@ -40,12 +40,11 @@ class Game {
   /**
 * Checks for winning move
 * @return {boolean} True if game has been won, false if game wasn't
-won
+won. If it hasn't been guessed yet console shows letter as "hide" or if it has been guessed it will be listed as "show"
 */
   checkForWin() {
     let phraseLetters = document.getElementsByClassName("hide");
-    let guessedLetter = document.getElementsByClassName("show");
-    if ((guessedLetter += phraseLetters)) {
+    if (phraseLetters.length <= 0) {  //*can i do === 0 or must it be <= 0
       return true;
     } else {
       return false;
@@ -63,42 +62,43 @@ won
    */
   removeLife() {
     const livesLeft = document.querySelectorAll("img");
-    this.missed++;
+    //this.missed = 0;  //so the this.missed = 0 from earlier in this class doesn't count towards this method?
+    //*now when i call removeLife in console (after just one time) it ends the game instead of removing all 5 lives.
     //removes a life from the scoreboard(one of liveHeart.png images is replaced with lostHeart.png image), increments
     //the missed property and if the player has lost the game calls the gameOver method.
-    // for (let i = 0; i < this.missed.length; i++) {
-    //   if (this.missed > 4) {
-    livesLeft[this.missed].src = "images/lostHeart.png";
-    this.gameOver(true);
-    //}
+    this.missed++;   
+    if (this.missed > 4) {
+        livesLeft[this.missed-1].src = "images/lostHeart.png";     
+        //the heart/lives must be a -1 to set index back tot zero otherwise it skips frist hear tlife.
+    } else {
+      this.gameOver(false);
+    }
+    
   }
   /**
    * Displays game over message
    * @param {boolean} gameWon - Whether or not the user won the game
    */
-//   gameOver(gameWon) {
-//     const screenOverlay = document.getElementById("overlay");
-//     screenOverlay.style.display = "none";
-//     screenOverlay.setAttribute("class", "start");
-//     //const gameWon
-//     //displays a final win or loss message by showing original start screen overlay styled with either win or lose CSS class
-//     if (gameWon) {
-//       screenOverlay.className = "win";
-//       gameOverMessage.innerHTML = "Congratulations! You guessed the phrase!";
-//     } else {
-//       screenOverlay.className = "lose";
-//       gameOverMessage.innerHTML =
-//         "Sorry, you did mot guess correctly this time, try again!";
-//     }
-//   }
- }
+  gameOver(gameWon) {
+    const screenOverlay = document.getElementById("overlay");
+    const gameOverMessage = document.getElementById('game-over-message');
+    screenOverlay.style.display = "none";
+    screenOverlay.setAttribute("class", "start");
+    //const gameWon
+    //displays a final win or loss message by showing original start screen overlay styled with either win or lose CSS class
+    if (gameWon) {
+      screenOverlay.className = "win";
+      screenOverlay.style.display = "block"; //block means 'show'
+      gameOverMessage.innerHTML = "Congratulations! You guessed the phrase!";
+    } else {
+      screenOverlay.className = "lose";
+      screenOverlay.style.display = "block";
+      gameOverMessage.innerHTML =
+        "Sorry, you did not guess correctly this time, try again!";
+    }
+  }
 
-
-//}
-// To test the `removeLife()` method, I simply called the method in the console to test that it
-// properly updated a heart image in the scoreboard (indicating that a life was "lost"):
-
-/** step 10:
+  /** step 10:
  * Handles onscreen keyboard button clicks
  * @param (HTMLButtonElement) button - The clicked button element
  */
@@ -106,23 +106,30 @@ won
 //Step 9: matching letter, letter displayed instead of placeholder or remove life if no match
 //check if player won by revealing all letters in phrase or lost if player out of lives
 //winner or loser message must be displayed on screen.
-// handleInteraction(button) {
-//   //if phrase does not include guessed letter, the wrong CSS class
-//   //is added to the selected letter's keyboard button and the removeLife is called.
-//   //if phrase includes guessed letter, the chosen CSS class is added to the
-//   //selected letter's keyboard button, the showMatchedletter method is
-//   //called on the phrase, and the checkForWin method is called.
-//   //If player has won game, the gameOver() method is called.
+handleInteraction(button) {
+  //if phrase does not include guessed letter, the wrong CSS class
+  //is added to the selected letter's keyboard button and the removeLife is called.
+  //if phrase includes guessed letter, the chosen CSS class is added to the
+  //selected letter's keyboard button, the showMatchedletter method is
+  //called on the phrase, and the checkForWin method is called.
+  //If player has won game, the gameOver() method is called.
+  const guessedLetter = button.textContent;
+  if (!this.activePhrase.checkLetter(guessedLetter)) {
+      this.removeLife();
+  } else  {
+      this.showMatchedLetter(guessedLetter); 
+      this.checkForWin()
+  }
+  console.log(button);
+}
+ }
 
-//   if (phrase === !guessedLetter) {
-//       game.removeLife();
-//   } else  {
-//     phrase.includes.guessedLetter
-//       game.showMatchedLetter() && game.checkForWin()
-//   }
 
-//   console.log(button);
 //}
+// To test the `removeLife()` method, I simply called the method in the console to test that it
+// properly updated a heart image in the scoreboard (indicating that a life was "lost"):
+
+
 
 // Then I called the `removeLife()` method four more times to test that the game would end and
 // display the "lost" message:

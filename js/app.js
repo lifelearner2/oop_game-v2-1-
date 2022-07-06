@@ -41,7 +41,7 @@
 //  phrase.addPhraseToDisplay();
 
 //Testing `start game()` method
-//const game = new Game();
+const game = new Game();
 
 //Step 8: declaring/defining var startButton with the id of btn__reset from the html(two underscores!)
 const startButton = document.getElementById("btn__reset");
@@ -49,7 +49,7 @@ const startButton = document.getElementById("btn__reset");
 
 //created event listener for the start button. When it's clicked the game will start.
 startButton.addEventListener("click", () => {
-  const game = new Game();
+  //const game = new Game();
   game.startGame();
 });
 //Testing game by typing the following directly into console::
@@ -63,11 +63,11 @@ startButton.addEventListener("click", () => {
 //clicking an onscreen keyboard button results in a call to "handleInteraction" method for the clicked keyboard button
 //this code activates the buttons (as well as the space around the buttons) when clicked. The console log will log the letter or the empty space that was clicked
 const keyButton = document.getElementById("qwerty");
-const game = new Game();
 keyButton.addEventListener("click", (e) => {
   console.log(e.target);
-  e.target.tagName === "BUTTON";
-  //game.handleInteraction();
+  if (e.target.tagName === "BUTTON") {
+    game.handleInteraction(e.target);
+  }
 });
 console.log(keyButton);
 

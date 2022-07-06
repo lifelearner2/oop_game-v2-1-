@@ -56,10 +56,11 @@ class Phrase {
   //showMatchedLetter method reveals the letter(s) on the board that matches the player's selection. not sure this is working.
   //To reveal matching letter(s), select all of the letter DOM elements that have a CSS class name that matches the selected letter and replace each selected hide CSS class with 'show'Class
   showMatchedLetter(letter) {
-    let revealLetter = document.querySelectorAll("letter");
+    let revealLetter = document.querySelectorAll(".letter");
+    console.log(revealLetter);
     for (let i = 0; i < revealLetter.length; i++) {
       if (revealLetter[i].textContent.includes(letter)) {
-        revealLetter[i].textContent.includes(letter);
+        //revealLetter[i].textContent.includes(letter);
         revealLetter[i].className = `show letter ${letter}`;
       }
     }
