@@ -84,41 +84,37 @@ won. If it hasn't been guessed yet console shows letter as "hide" or if it has b
       screenOverlay.className = "win";
       screenOverlay.style.display = "block"; //block means 'show'
       gameOverMessage.innerHTML = "Congratulations! You guessed the phrase!";
-     
     } else {
       screenOverlay.className = "lose";
       screenOverlay.style.display = "block";
       gameOverMessage.innerHTML =
-        "Sorry, you did not guess correctly this time, try again!";   
+        "Sorry, you did not guess correctly this time, try again!";
     }
     this.resetGame();
-  } 
+  }
   //STEP 12: after a game is completed, the gameboard is reset so that clicking the start game button loads a new game.
   resetGame() {
-    //Figure out proper selectors for buttons with class 'key'
-        const keyButton = document.getElementById("qwerty");
-        const button = keyButton.getElementsByTagName("button")
-        console.log(button);
+    const keyButton = document.getElementById("qwerty");
+    const buttons = keyButton.getElementsByTagName("button");
+    console.log(buttons);
 
-        let phraseDiv = document.getElementById("phrase"); //is this necessary?
-        phraseDiv.querySelector("ul").innerHTML = ""; //Removing 'li' elements from Phrase 'ul' element
-        
-    //Need to both remove classes of button (chosen/wrong) and disable class inside button (can't click)
-        button.classList = ""; //updating buttons to original CSS class instead of chosen or wrong class
-        button.classList = "key";   
-      
-       //Everything below works to reset the heart lives
-        this.missed = 0; //resets missed letters back to zero
-        console.log("hello world");
-            const resetLives = document.querySelectorAll("img"); //accessing the heart images and storing under resetLives variable
-            for (let i = 0; i < resetLives.length; i++) {
-              resetLives[i].src = "images/liveHeart.png"; //reset lives at restart of game
-              
-              
-            
-            }   
+    
+    //loop through all buttons and update buttons to original CSS 'key' class instead of 'chosen' or 'wrong' class(from previous game)
+    //also re-enabling all the buttons to work again as in the last game they were disabled once clicked.
+    for (let i=0; i<buttons.length; i++){
+      buttons[i].className = "key"
+      buttons[i].disabled = false;
     }
-  
+   
+    let phraseDiv = document.getElementById("phrase"); 
+    phraseDiv.querySelector("ul").innerHTML = ""; //Removing 'li' elements from Phrase 'ul' element
+
+    this.missed = 0; //resets missed letters back to zero
+    const resetLives = document.querySelectorAll("img"); //accessing the heart images and storing under resetLives variable
+    for (let i = 0; i < resetLives.length; i++) {
+      resetLives[i].src = "images/liveHeart.png"; //reset lives at restart of game
+    }
+  }
 
   //Step 9: matching letter, letter displayed instead of placeholder or remove life if no match
   //check if player won by revealing all letters in phrase or lost if player out of lives
@@ -142,7 +138,7 @@ won. If it hasn't been guessed yet console shows letter as "hide" or if it has b
     button.disabled = true; //disabling guessed letter's key button, so you can only choose a letter once
     if (!this.activePhrase.checkLetter(guessedLetter)) {
       button.className = "wrong"; //adds dark gray color to correct letter button clicked
-      this.removeLife(); 
+      this.removeLife();
     } else {
       this.activePhrase.showMatchedLetter(guessedLetter);
       button.className = "chosen"; //adds orange color to wrong letter button clicked
@@ -150,11 +146,10 @@ won. If it hasn't been guessed yet console shows letter as "hide" or if it has b
       if (this.checkForWin()) {
         this.gameOver(true);
       }
-    
-    console.log(button);
-  }
-}
 
+      console.log(button);
+    }
+  }
 }
 // TEST `removeLife()` method, call the method in the console to test that it properly updated a heart image in the scoreboard (indicating that a life was "lost"):
 // Then call the `removeLife()` method four more times to test that the game would end and display the "lost" message: removeLife(lost);
