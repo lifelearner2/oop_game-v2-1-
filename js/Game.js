@@ -57,13 +57,13 @@ won. If it hasn't been guessed yet console shows letter as "hide" or if it has b
    * Checks if player has remaining lives and ends game if player is out
    */ //this.missed = 0;  //so the this.missed = 0 from earlier in this class doesn't count towards this method?
   //*now when i call removeLife in console (after just one time) it ends the game instead of removing all 5 lives.
-  //removes a life from the scoreboard(one of liveHeart.png images is replaced with lostHeart.png image), increments
+  //removes a life from the scoreboard(one of .png images is replaced with lostHeart.png image), increments
   //the missed property and if the player has lost the game calls the gameOver method.
   //the heart/lives must be a -1 to set index back tot zero otherwise it skips first heart life.
   removeLife() {
     const livesLeft = document.querySelectorAll("img");
     this.missed++;
-    livesLeft[this.missed -1].src = "images/lostHeart.png";
+    livesLeft[this.missed - 1].src = "images/lostHeart.png";
     if (this.missed < 5) {
     } else {
       this.gameOver(false);
@@ -81,56 +81,81 @@ won. If it hasn't been guessed yet console shows letter as "hide" or if it has b
     //const gameWon
     //displays a final win or loss message by showing original start screen overlay styled with either win or lose CSS class
     if (gameWon) {
-      this.checkForWin(gameOver)(true);
       screenOverlay.className = "win";
       screenOverlay.style.display = "block"; //block means 'show'
       gameOverMessage.innerHTML = "Congratulations! You guessed the phrase!";
+     
     } else {
-      this.game.checkForWin(gameOver)(false);
       screenOverlay.className = "lose";
       screenOverlay.style.display = "block";
       gameOverMessage.innerHTML =
-        "Sorry, you did not guess correctly this time, try again!";
+        "Sorry, you did not guess correctly this time, try again!";   
     }
-  }
+    this.resetGame();
+  } 
+  //STEP 12: after a game is completed, the gameboard is reset so that clicking the start game button loads a new game.
+  resetGame() {
+    //Figure out proper selectors for buttons with class 'key'
+        const keyButton = document.getElementById("qwerty");
+        const button = keyButton.getElementsByTagName("button")
+        console.log(button);
 
+        let phraseDiv = document.getElementById("phrase"); //is this necessary?
+        phraseDiv.querySelector("ul").innerHTML = ""; //Removing 'li' elements from Phrase 'ul' element
+        
+    //Need to both remove classes of button (chosen/wrong) and disable class inside button (can't click)
+        button.classList = ""; //updating buttons to original CSS class instead of chosen or wrong class
+        button.classList = "key";   
+      
+       //Everything below works to reset the heart lives
+        this.missed = 0; //resets missed letters back to zero
+        console.log("hello world");
+            const resetLives = document.querySelectorAll("img"); //accessing the heart images and storing under resetLives variable
+            for (let i = 0; i < resetLives.length; i++) {
+              resetLives[i].src = "images/liveHeart.png"; //reset lives at restart of game
+              
+              
+            
+            }   
+    }
   
-  
+
   //Step 9: matching letter, letter displayed instead of placeholder or remove life if no match
   //check if player won by revealing all letters in phrase or lost if player out of lives
   //winner or loser message must be displayed on screen.
 
- 
   //If player has won game, the gameOver() method is called.
   //STEP 11: Logic and branching included in handleInteraction method
   //It checks to see if the onscreen keyboard button clicked by the player matches a letter in the phrase, and
-//then directs the game based on a correct or incorrect guess. This method should:
-//● Disable the selected letter’s onscreen keyboard button.
-//● If the phrase does not include the guessed letter, add the `wrong` CSS class to the
-//selected letter's keyboard button and call the `removeLife()` method.
-//● If the phrase includes the guessed letter, add the `chosen` CSS class to the selected
-//letter's keyboard button, call the `showMatchedLetter()` method on the phrase, and
-//then call the `checkForWin()` method. If the player has won the game, also call the
-//`gameOver()` method.
+  //then directs the game based on a correct or incorrect guess. This method should:
+  //● Disable the selected letter’s onscreen keyboard button.
+  //● If the phrase does not include the guessed letter, add the `wrong` CSS class to the
+  //selected letter's keyboard button and call the `removeLife()` method.
+  //● If the phrase includes the guessed letter, add the `chosen` CSS class to the selected
+  //letter's keyboard button, call the `showMatchedLetter()` method on the phrase, and
+  //then call the `checkForWin()` method. If the player has won the game, also call the
+  //`gameOver()` method.
 
-//If phrase does not include guessed letter, the removeLife is called. Otherwise, the screen shows the matched letter and the game checks for a win.
+  //If phrase does not include guessed letter, the removeLife is called. Otherwise, the screen shows the matched letter and the game checks for a win.
   handleInteraction(button) {
     const guessedLetter = button.textContent;
     button.disabled = true; //disabling guessed letter's key button, so you can only choose a letter once
     if (!this.activePhrase.checkLetter(guessedLetter)) {
-      button.className = 'chosen'; //adds orange color to correct letter button clicked
-      this.removeLife(); //don't know why I had to reverse the chosen and wrong
+      button.className = "wrong"; //adds dark gray color to correct letter button clicked
+      this.removeLife(); 
     } else {
       this.activePhrase.showMatchedLetter(guessedLetter);
-      this.checkForWin();
-      button.className = 'wrong'; //adds dark gray color to wrong letter button clicked
-      game.gameOver();
-    }
+      button.className = "chosen"; //adds orange color to wrong letter button clicked
+      //checkForWin returns boolean - T/F
+      if (this.checkForWin()) {
+        this.gameOver(true);
+      }
+    
     console.log(button);
   }
 }
 
-//}
+}
 // TEST `removeLife()` method, call the method in the console to test that it properly updated a heart image in the scoreboard (indicating that a life was "lost"):
 // Then call the `removeLife()` method four more times to test that the game would end and display the "lost" message: removeLife(lost);
 // Finally, call the `gameOver()` method passing `true` to test that the game would end and display the "won" message: gameOver(true);
